@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [CommonModule, SharedModule],
+  exports: [],
   declarations: [LandingPageComponent],
 })
 export class LandingPageModule {}

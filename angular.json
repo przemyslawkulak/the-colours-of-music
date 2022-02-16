@@ -103,6 +103,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://przemyslawkulak.github.io/the-colours-of-music/",
+            "name": "The Colours of Music",
+            "email": "przemyslaw.kulak86@gmail.com"
+          }
         }
       }
     }

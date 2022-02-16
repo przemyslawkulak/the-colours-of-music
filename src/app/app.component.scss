@@ -1,0 +1,13 @@
+.root-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+.main-container {
+  flex: 1;
+  max-width: 1500px;
+  margin: auto 0;
+}

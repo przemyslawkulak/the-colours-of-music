@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AlbumsRoutingModule } from './albums-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    AlbumsRoutingModule
+    AlbumsRoutingModule,
+    SharedModule,
+
   ]
 })
 export class AlbumsModule { }

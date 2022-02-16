@@ -1,0 +1,31 @@
+<mat-toolbar class="mat-toolbar mat-toolbar-single-row" color="primary">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/artists">Artists</button>
+    <button mat-menu-item routerLink="/albums">Albums</button>
+    <button mat-menu-item routerLink="/tracks">Tracks</button>
+  </mat-menu>
+  <span routerLink="/home">The Colours Of Music</span>
+
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>

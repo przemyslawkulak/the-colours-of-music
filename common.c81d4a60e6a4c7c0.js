@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkthe_colours_of_music=self.webpackChunkthe_colours_of_music||[]).push([[592],{4466:(E,r,o)=>{o.d(r,{m:()=>n});var e=o(9808),u=o(1083),a=o(4856),l=o(5e3);let n=(()=>{class _{}return _.\u0275fac=function(t){return new(t||_)},_.\u0275mod=l.oAB({type:_}),_.\u0275inj=l.cJS({imports:[[e.ez,u.Bz,a.q],u.Bz,a.q]}),_})()}}]);

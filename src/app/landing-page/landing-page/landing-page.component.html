@@ -1,11 +1,16 @@
-<div style="height: 120vh">
+<div class="landing-page">
+  <ng-container *ngFor="let card of cardsList">
+    <mat-card
+      class="landing-page_card landing-page_{{ card.title | lowercase }}"
+      routerLink="{{ card.routeLink }}"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ card.title }}</mat-card-title>
+      </mat-card-header>
 
-
-
-  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-
-  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-
-  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-
+      <mat-card-content class="landing-page_content">
+        <mat-icon class="landing-page_icon">{{ card.icon }}</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
 </div>

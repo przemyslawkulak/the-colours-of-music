@@ -2,6 +2,15 @@
   padding: 12px;
   font-size: 12px;
   background: #673ab7;
+
+  // background: rgb(3, 148, 195);
+  // background: linear-gradient(
+  //   90deg,
+  //   rgba(3, 148, 195, 1) 0%,
+  //   rgba(157, 241, 50, 1) 33%,
+  //   rgba(254, 59, 45, 1) 66%,
+  //   rgba(250, 205, 69, 1) 100%
+  // );
   color: #fff;
   .footer-list {
     align-items: center;
@@ -17,6 +26,7 @@
 
     &__image {
       height: 50px;
+      width: 50px;
       border-radius: 50%;
     }
     &__text {
@@ -38,6 +48,18 @@
       align-self: flex-end;
       text-align: center;
       text-align: end;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer_version {
+      display: none;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .footer_copyrigths {
+      display: none;
     }
   }
 }

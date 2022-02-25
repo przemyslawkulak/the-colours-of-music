@@ -1,5 +1,13 @@
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
+}
+
+.right-panel {
+  display: flex;
+  justify-content: space-between;
+  &__items {
+    margin: 0 5px;
+  }
 }
 
 // .mat-toolbar {

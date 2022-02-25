@@ -1,3 +1,5 @@
+import { Country } from '@angular-material-extensions/select-country';
+
 export interface Article {
   cover: any;
   artists: Artist[];
@@ -18,7 +20,7 @@ export interface Article {
 
 export interface Artist {
   Described: boolean;
-  Top100: number;
+  Top?: number;
   created_at: Date;
   created_by: any; // todo User interface
   displayName: string;
@@ -27,6 +29,16 @@ export interface Artist {
   updated_by: any; // todo User interface
   value: string;
   spotifyUrl: string;
+  countries: Country[];
+  albums: Album[];
+  articles: Article[];
+  tracks: Track[];
+}
+
+export interface ArtistTable extends Artist {
+  tags?: string[];
+  to_save?: boolean;
+
 }
 
 export interface Tag {

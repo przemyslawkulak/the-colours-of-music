@@ -6,26 +6,33 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/artists">Artists List</button>
-    <button mat-menu-item routerLink="/albums">Albums Lis</button>
-    <button mat-menu-item routerLink="/tracks">Tracks List</button>
-  </mat-menu>
+  <mat-menu #menu="matMenu"> </mat-menu>
   <span routerLink="/home">The Colours Of Music</span>
 
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
+  <div class="right-panel"></div>
   <button
+    class="right-panel__items"
     mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
+    routerLink="/artists"
+    aria-label="icon-button navigates to artists list"
   >
-    <mat-icon>favorite</mat-icon>
+    <mat-icon>mic_external_on</mat-icon>
   </button>
   <button
+    class="right-panel__items"
     mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
+    routerLink="/albums"
+    aria-label="icon-button navigates to albums list"
   >
-    <mat-icon>share</mat-icon>
+    <mat-icon>album</mat-icon>
+  </button>
+  <button
+    class="right-panel__items"
+    mat-icon-button
+    routerLink="/tracks"
+    aria-label="icon-button navigates to tracks list"
+  >
+    <mat-icon>audio_file</mat-icon>
   </button>
 </mat-toolbar>

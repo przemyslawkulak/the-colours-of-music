@@ -91,7 +91,6 @@ export class ApiService {
   }
 
   private notifyUser(response: HttpErrorResponse) {
-    console.log(response);
     this._snackBar.open(response.message, 'Close', {
       horizontalPosition: 'end',
       verticalPosition: 'top',

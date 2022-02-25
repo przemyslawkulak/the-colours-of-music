@@ -1,0 +1,39 @@
+<h1 class="sidebar__header">Filters</h1>
+<mat-form-field appearance="fill">
+  <mat-label>Top Filter Option</mat-label
+  ><mat-select appearance="fill" [formControl]="topFilterControl">
+    <mat-option *ngFor="let options of topFilterOptions" [value]="options">
+      {{ options }}
+    </mat-option></mat-select
+  ></mat-form-field
+>
+
+<mat-form-field appearance="fill">
+  <mat-label>Search text</mat-label>
+  <input matInput type="text" [formControl]="searchTextControl" />
+  <button
+    *ngIf="searchTextControl.value"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="clearSearchText()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<label id="showing-artist-list">Select list type</label>
+
+<mat-radio-group
+  aria-label="Select an option"
+  aria-labelledby="showing-artist-list"
+  class="showing-artist-list"
+  [(ngModel)]="artistListOption"
+  (ngModelChange)="changeArtistListOption($event)"
+>
+  <mat-radio-button class="showing-artist-button" value="table"
+    >Table</mat-radio-button
+  >
+  <mat-radio-button class="showing-artist-button" value="dnd"
+    >Drag 'n drop</mat-radio-button
+  >
+</mat-radio-group>

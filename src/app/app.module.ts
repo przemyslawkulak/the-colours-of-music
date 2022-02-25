@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageModule } from './landing-page/landing-page.module';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { LandingPageModule } from './landing-page/landing-page.module';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatSelectCountryModule.forRoot('en'),
   ],
   providers: [],
   bootstrap: [AppComponent],

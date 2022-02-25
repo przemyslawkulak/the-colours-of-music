@@ -1,0 +1,59 @@
+<div class="example-box">
+  <mat-checkbox
+    class="example-margin"
+    [(ngModel)]="artist.to_save"
+    [labelPosition]="'before'"
+    [color]="'primary'"
+    (ngModelChange)="updateCheckbox()"
+  >
+  </mat-checkbox>
+  <div class="example-box__name">
+    {{ artist.Top }}&nbsp;{{ artist.displayName }} ({{
+      !!artist?.countries?.length ? (artist?.countries)![0].alpha3Code : ""
+    }})
+  </div>
+  <!-- <div class="example-box__country-field">
+    <mat-select-country
+      appearance="outline"
+      label="Country"
+      [itemsLoadSize]="6"
+      [countries]="countryList"
+      [value]="
+        artist?.countries?.length ? (artist?.countries)![0] : EMPTYCOUNTRY
+      "
+      autocomplete="'no'"
+      (onCountrySelected)="changeCountry($event)"
+    >
+    </mat-select-country>
+  </div> -->
+  <div class="example-box__country-field">
+    <mat-form-field appearance="outline">
+      <mat-label>TOP Artist position</mat-label>
+      <mat-select
+        [(ngModel)]="artist.Top"
+        (selectionChange)="autoChangePosition($event.value - 1)"
+      >
+        <mat-select-trigger>
+          {{ artist.Top ? artist.Top : "" }}
+        </mat-select-trigger>
+        <mat-option [value]="null">-</mat-option>
+        <mat-option
+          *ngFor="let rankNumber of rankNumberList"
+          [value]="rankNumber"
+          >{{ rankNumber }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>Tracks: {{ artist.tracks.length }}</div>
+
+  <!-- <iframe
+src="https://open.spotify.com/embed/track/6tCssnvTUREcperDOUTqvA"
+width="300"
+height="380"
+frameborder="0"
+allowtransparency="true"
+allow="encrypted-media"
+></iframe> -->
+</div>

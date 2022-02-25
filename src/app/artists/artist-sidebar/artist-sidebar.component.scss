@@ -1,0 +1,18 @@
+:host {
+  margin: 10px;
+}
+
+.sidebar__header {
+  margin: 5px;
+}
+
+.showing-artist-list {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.showing-artist-button {
+  margin: 5px;
+}

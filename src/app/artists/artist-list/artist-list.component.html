@@ -1,2 +1,62 @@
-<p>artist-list works!</p>
+<div class="artist-list-container">
+  <app-artist-sidebar
+    [topFilterControl]="topFilterControl"
+    [searchTextControl]="searchTextControl"
+    (changedArtistListOption)="artistListOption = $event"
+  ></app-artist-sidebar>
+  <div>
+    <div class="top-bar">
+      <mat-checkbox
+        class="example-margin"
+        [checked]="allComplete"
+        [color]="'primary'"
+        (change)="setAll($event.checked)"
+        [indeterminate]="someComplete()"
+      >
+        Set all</mat-checkbox
+      >
 
+      <button
+        class="top-bar__button"
+        mat-raised-button
+        color="primary"
+        aria-label="Example icon-button with add icon"
+        (click)="saveChanges()"
+      >
+        Save changes
+      </button>
+    </div>
+
+    <mat-paginator
+      [length]="pageEvent.length"
+      [pageSize]="pageEvent.pageSize"
+      [pageSizeOptions]="[5, 10, 25, 50, 100, 200]"
+      (page)="pageChange($event)"
+      aria-label="Select page of artists"
+    ></mat-paginator>
+    <div *ngIf="isLoading" class="loader">
+      <mat-spinner [mode]="'indeterminate'"></mat-spinner>
+    </div>
+
+    <div
+      *ngIf="!isLoading && artistListOption === 'dnd'"
+      cdkDropList
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div>
+        <app-dragable-artist-card
+          *ngFor="let artist of ddartists; let i = index; trackBy: identify"
+          cdkDrag
+          [artist]="artist"
+          [countryList]="countryList"
+          (changedPosition)="autoChangePosition(i, $event)"
+          (changedCheckbox)="updateAllComplete()"
+        ></app-dragable-artist-card>
+      </div>
+    </div>
+    <div *ngIf="!isLoading && artistListOption === 'table'">
+      <app-artist-list-table>s</app-artist-list-table>
+    </div>
+  </div>
+</div>

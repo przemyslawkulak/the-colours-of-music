@@ -1,0 +1,35 @@
+<mat-form-field class="artist-dialog-chip-list" appearance="fill">
+  <mat-label>Tracks</mat-label>
+  <input
+    class="dialog-chip-input"
+    placeholder="New track..."
+    #trackInput
+    [formControl]="trackCtrl"
+    [matAutocomplete]="autoTrack"
+    [matChipInputFor]="trackChipList"
+    (matChipInputTokenEnd)="addTrack($event)"
+  />
+  <mat-chip-list
+    #trackChipList
+    [formControl]="_trackForm"
+    aria-label="Track selection"
+  >
+    <mat-chip
+      *ngFor="let track of trackItems"
+      (removed)="removeTrack(track)"
+    >
+      {{ track.Title }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-list>
+  <mat-autocomplete
+    #autoTrack="matAutocomplete"
+    (optionSelected)="selectedTrack($event)"
+  >
+    <mat-option *ngFor="let track of tracksList$ | async" [value]="track">
+      {{ track.Title }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

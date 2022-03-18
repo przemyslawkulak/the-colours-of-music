@@ -1,0 +1,201 @@
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+<mat-dialog-content>
+  <ng-container *ngIf="formArtist">
+    <div class="spinner-container" *ngIf="loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <ng-container [formGroup]="formArtist">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Artist Description"
+          formControlName="displayName"
+        />
+      </mat-form-field>
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel
+          [expanded]="step === 0"
+          (opened)="setStep(0)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Country </mat-panel-title>
+            <mat-panel-description>
+              List of Countries
+              <mat-icon>public</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-select-country
+            appearance="standard"
+            label="Country"
+            [itemsLoadSize]="6"
+            [countries]="(countryList$ | async) || []"
+            [value]="formArtist.get('countries')?.value[0]"
+            autocomplete="'no'"
+            (onCountrySelected)="countrySelection($event)"
+          >
+          </mat-select-country>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [expanded]="step === 1"
+          (opened)="setStep(1)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Tracks </mat-panel-title>
+            <mat-panel-description>
+              Tracks
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-track-modal-field
+            [trackForm]="trackItems"
+          ></app-track-modal-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 2"
+          (opened)="setStep(2)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Albums </mat-panel-title>
+            <mat-panel-description>
+              Albums
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-album-modal-field
+            [albumForm]="albumItems"
+          ></app-album-modal-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 3"
+          (opened)="setStep(3)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Articles </mat-panel-title>
+            <mat-panel-description>
+              Articles
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item
+              *ngFor="let article of artist.articles; index as i"
+              class="article-item"
+              role="listitem"
+              ><a mat-flat-button href=""
+                >{{ i + 1 }} {{ article.name }}</a
+              ></mat-list-item
+            >
+          </mat-list>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 4"
+          (opened)="setStep(4)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Tags </mat-panel-title>
+            <mat-panel-description>
+              Tags
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <app-tag-modal-field
+            [tagForm]="tagItems"
+            [artist]="artist"
+          ></app-tag-modal-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          [expanded]="step === 5"
+          (opened)="setStep(5)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Miscellaneous </mat-panel-title>
+            <mat-panel-description>
+              Miscellaneous
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <app-misc-modal-field></app-misc-modal-field>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">End</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-slide-toggle
+        class="desrcibed-slide-toggle"
+        formControlName="Described"
+        >Described</mat-slide-toggle
+      >
+    </ng-container>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onClose()">Close</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!formArtist?.valid || (this.loading$ | async)"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

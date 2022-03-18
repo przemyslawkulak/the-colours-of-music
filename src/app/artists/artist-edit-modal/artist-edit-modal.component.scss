@@ -1,0 +1,49 @@
+.mat-form-field {
+  display: block;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.mat-dialog-actions {
+  justify-content: space-between;
+}
+
+:host::ng-deep mat-select-country .mat-form-field {
+  display: block;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.desrcibed-slide-toggle {
+  margin: 10px;
+}
+
+.dialog-chip-input {
+  margin-bottom: 15px;
+  display: block;
+}
+
+.article-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  & ::ng-deep.mat-list-item-content {
+    display: inline;
+  }
+}

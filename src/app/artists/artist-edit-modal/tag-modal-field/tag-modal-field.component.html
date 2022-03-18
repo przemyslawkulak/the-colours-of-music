@@ -1,0 +1,41 @@
+<mat-form-field class="artist-dialog-chip-list" appearance="standard">
+  <mat-label>Tags</mat-label>
+  <button
+    #tagButton
+    *ngIf="!tagItems.length"
+    mat-raised-button
+    color="primary"
+    (click)="getTagsFromArticle()"
+  >
+    Get Tags from articles
+  </button>
+  <input
+    class="dialog-chip-input"
+    placeholder="New tag..."
+    #tagInput
+    [formControl]="tagCtrl"
+    [matAutocomplete]="tagAuto"
+    [matChipInputFor]="tagChipList"
+    (matChipInputTokenEnd)="addTag($event)"
+  />
+  <mat-chip-list
+    #tagChipList
+    [formControl]="_tagForm"
+    aria-label="Tag selection"
+  >
+    <mat-chip *ngFor="let tag of tagItems" (removed)="removeTag(tag)">
+      {{ tag.displayValue }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-list>
+  <mat-autocomplete
+    #tagAuto="matAutocomplete"
+    (optionSelected)="selectedTag($event)"
+  >
+    <mat-option *ngFor="let tag of tagsList$ | async" [value]="tag">
+      {{ tag.displayValue }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

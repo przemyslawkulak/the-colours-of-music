@@ -1,0 +1,37 @@
+<div class="example-box">
+  <mat-checkbox
+    class="example-margin"
+    [(ngModel)]="artist.to_save"
+    [labelPosition]="'before'"
+    [color]="'primary'"
+  >
+  </mat-checkbox>
+  <span class="example-box__name">
+    {{ artist.Top }}&nbsp;{{ artist.displayName }} ({{
+      !!artist?.countries?.length ? (artist?.countries)![0].alpha3Code : ""
+    }})
+  </span>
+  <!-- <div class="example-box__country-field">
+    <mat-form-field appearance="outline">
+      <mat-label>TOP Artist position</mat-label>
+      <input
+        matInput
+        placeholder="No."
+        type="number"
+        [ngModel]="artist.Top"
+        (ngModelChange)="autoChangePosition(+$event - 1)"
+      />
+    </mat-form-field>
+  </div> -->
+
+  <div class="example-margin">Tracks: {{ artist.tracks.length }}</div>
+  <button
+    class="example-box__save-button"
+    mat-raised-button
+    color="primary"
+    aria-label="Example icon-button with add icon"
+    (click)="saveItemChanges(artist)"
+  >
+    Change
+  </button>
+</div>

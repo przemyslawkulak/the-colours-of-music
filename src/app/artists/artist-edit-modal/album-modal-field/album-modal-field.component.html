@@ -1,0 +1,32 @@
+<mat-form-field class="artist-dialog-chip-list" appearance="standard">
+  <mat-label>Albums</mat-label>
+  <input
+    class="dialog-chip-input"
+    placeholder="New album..."
+    #albumInput
+    [formControl]="albumCtrl"
+    [matAutocomplete]="albumAuto"
+    [matChipInputFor]="albumChipList"
+    (matChipInputTokenEnd)="addAlbum($event)"
+  />
+  <mat-chip-list
+    #albumChipList
+    [formControl]="_albumForm"
+    aria-label="Album selection"
+  >
+    <mat-chip *ngFor="let album of albumItems" (removed)="removeAlbum(album)">
+      {{ album.Title }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-list>
+  <mat-autocomplete
+    #albumAuto="matAutocomplete"
+    (optionSelected)="selectedAlbum($event)"
+  >
+    <mat-option *ngFor="let album of albumsList$ | async" [value]="album">
+      {{ album.Title }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

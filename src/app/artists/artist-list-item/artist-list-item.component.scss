@@ -1,0 +1,32 @@
+.example-box {
+  // padding: 6px;
+  // border-bottom: solid 1px #ccc;
+  // color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  box-sizing: border-box;
+  // background: white;
+  font-size: 14px;
+
+  &__name {
+    min-width: 300px;
+  }
+
+  &__country-field {
+    // margin: 17px 10px 0 10px;
+  }
+
+  &__save-button {
+    margin-left: auto;
+  }
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+
+:host {
+  width: 100%;
+}

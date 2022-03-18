@@ -38,7 +38,7 @@ export class ArtistListComponent implements OnInit {
 
   allComplete = false;
 
-  countryList: Country[] = [];
+  countryList: Observable<Country[]> = of([]);
 
   public ddartists: ArtistTable[] = [];
   pageEvent: PageEvent = this.initPageSettings;
@@ -49,7 +49,7 @@ export class ArtistListComponent implements OnInit {
   topFilterControl = new FormControl('Ranked');
   searchTextControl = new FormControl('');
 
-  topFilterOptions: string[] = ['Not Ranked', 'Ranked'];
+  topFilterOptions: string[] = ['Not Ranked', 'Ranked', 'All'];
 
   artistListOption: 'table' | 'dnd' = 'dnd';
 
@@ -59,14 +59,12 @@ export class ArtistListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._countriesService.getCountries().subscribe((res) => {
-      this.countryList = res;
-    });
+    this.countryList = this._countriesService.getCountries();
     combineLatest([
       this.topFilterControl.valueChanges.pipe(startWith('Ranked')),
-      this.searchTextControl.valueChanges.pipe(startWith('')).pipe(
-        debounceTime(500)
-      ),
+      this.searchTextControl.valueChanges
+        .pipe(startWith(''))
+        .pipe(debounceTime(500)),
 
       this.pageControl.valueChanges.pipe(startWith(this.initPageSettings)),
     ])
@@ -116,8 +114,16 @@ export class ArtistListComponent implements OnInit {
         this.pageEvent.pageSize * this.pageEvent.pageIndex,
         this.pageEvent.pageSize,
         query,
-        filter === 'Ranked' ? 'Top:ASC' : '',
-        filter === 'Ranked' ? 'Top_gte=1' : 'Top_null=true'
+        filter === 'All'
+          ? 'displayName:ASC'
+          : filter === 'Ranked'
+          ? 'Top:ASC'
+          : '',
+        filter === 'All'
+          ? undefined
+          : filter === 'Ranked'
+          ? 'Top_gte=1'
+          : 'Top_null=true'
       ),
       this._artistsService.getArtistCount(),
     ]);

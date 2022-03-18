@@ -33,12 +33,18 @@ export interface Artist {
   albums: Album[];
   articles: Article[];
   tracks: Track[];
+  tags: Tag[];
+  imageUrl?: string;
+  knowledge?: Knowledge;
 }
 
 export interface ArtistTable extends Artist {
-  tags?: string[];
   to_save?: boolean;
+}
 
+export interface Knowledge {
+  id: number;
+  displayValue: string;
 }
 
 export interface Tag {

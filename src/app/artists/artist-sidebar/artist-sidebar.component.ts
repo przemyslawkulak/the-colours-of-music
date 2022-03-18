@@ -20,7 +20,7 @@ export class ArtistSidebarComponent implements OnInit {
 
   artistListOption: 'table' | 'dnd' = 'dnd';
 
-  topFilterOptions: string[] = ['Not Ranked', 'Ranked'];
+  topFilterOptions: string[] = ['Not Ranked', 'Ranked', 'All'];
 
   clearSearchText() {
     this.searchTextControl.patchValue('');

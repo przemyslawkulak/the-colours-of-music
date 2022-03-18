@@ -45,14 +45,28 @@
       (cdkDropListDropped)="drop($event)"
     >
       <div>
-        <app-dragable-artist-card
+        <mat-list role="list" class="artist-list">
+          <mat-list-item
+            *ngFor="let artist of ddartists; let i = index; trackBy: identify"
+            role="listitem"
+          >
+            <app-artist-list-item
+              [artist]="artist"
+              [countryList]="(countryList | async)"
+              (changedPosition)="autoChangePosition(i, $event)"
+              (changedCheckbox)="updateAllComplete()"
+            ></app-artist-list-item
+          ></mat-list-item>
+        </mat-list>
+
+        <!-- <app-dragable-artist-card
           *ngFor="let artist of ddartists; let i = index; trackBy: identify"
           cdkDrag
           [artist]="artist"
           [countryList]="countryList"
           (changedPosition)="autoChangePosition(i, $event)"
           (changedCheckbox)="updateAllComplete()"
-        ></app-dragable-artist-card>
+        ></app-dragable-artist-card> -->
       </div>
     </div>
     <div *ngIf="!isLoading && artistListOption === 'table'">

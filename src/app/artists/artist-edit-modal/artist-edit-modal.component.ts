@@ -20,6 +20,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Artist } from '@shared/models/article';
 import { CountriesService } from '@shared/services/countries/countries.service';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectAllCountries } from 'src/app/root-store/selectors';
 
 @Component({
   selector: 'app-artist-edit-modal',
@@ -47,11 +49,12 @@ export class ArtistEditModalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _countriesService: CountriesService,
+    private store: Store,
     private dialogRef: MatDialogRef<ArtistEditModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     data: { artist: Artist; mode: 'create' | 'update'; dialogTitle: string }
   ) {
-    this.countryList$ = this._countriesService.getCountries();
+    this.countryList$ = this.store.select(selectAllCountries);
 
     this.artist = data.artist;
     this.mode = data.mode;

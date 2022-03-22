@@ -14,8 +14,9 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
-import { CountriesService } from '@shared/services/countries/countries.service';
 import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { selectAllCountries } from 'src/app/root-store/selectors';
 
 @Component({
   selector: 'app-artist-list',
@@ -53,13 +54,10 @@ export class ArtistListComponent implements OnInit {
 
   artistListOption: 'table' | 'dnd' = 'dnd';
 
-  constructor(
-    private _artistsService: ArtistsService,
-    private _countriesService: CountriesService
-  ) {}
+  constructor(private _artistsService: ArtistsService, private store: Store) {}
 
   ngOnInit(): void {
-    this.countryList = this._countriesService.getCountries();
+    this.countryList = this.store.select(selectAllCountries);
     combineLatest([
       this.topFilterControl.valueChanges.pipe(startWith('Ranked')),
       this.searchTextControl.valueChanges

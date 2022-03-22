@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   rules: {
-    "@typescript-eslint/no-empty-function": ["warn"]
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/no-empty-interface": ["warn"]
   },
 };

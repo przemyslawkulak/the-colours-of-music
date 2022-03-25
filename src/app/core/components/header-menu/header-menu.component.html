@@ -1,13 +1,22 @@
 <mat-toolbar class="mat-toolbar mat-toolbar-single-row" color="primary">
-  <button
+  <!-- <button
     mat-icon-button
     [matMenuTriggerFor]="menu"
     aria-label="Example icon-button with menu icon"
   >
     <mat-icon>menu</mat-icon>
-  </button>
+  </button> -->
   <mat-menu #menu="matMenu"> </mat-menu>
-  <span routerLink="/home">The Colours Of Music</span>
+  <div class="header_logo">
+    <img
+      class="header_logo__image"
+      src="https://secure.gravatar.com/avatar/b943567a50b92cb2d35e29d4510c14d7/?s=120&d=identicon"
+      alt="page logo"
+    />
+    <span class="header_logo__text"></span>
+    The Colours Of Music
+  </div>
+  <button class="button-header" routerLink="/" mat-raised-button>Home</button>
 
   <span class="spacer"></span>
   <div class="right-panel"></div>
@@ -42,5 +51,28 @@
     aria-label="icon-button navigates to snippets"
   >
     <mat-icon>code</mat-icon>
+  </button>
+  <a
+    *ngIf="isLoggedOut$ | async"
+    class="button-header"
+    href="/auth/login"
+    mat-raised-button
+    >Login</a
+  >
+  <a
+    *ngIf="isLoggedOut$ | async"
+    class="button-header"
+    href="/auth/signin"
+    mat-raised-button
+    >Sign In</a
+  >
+
+  <button
+    *ngIf="isLoggedIn$ | async"
+    class="button-header"
+    mat-raised-button
+    (click)="logout()"
+  >
+    Logout
   </button>
 </mat-toolbar>
